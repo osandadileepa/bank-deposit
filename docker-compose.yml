@@ -1,0 +1,32 @@
+version: "3"
+
+volumes:
+  bank-deposit:
+    driver: local
+services:
+  mysql-service:
+    image: "mysql:5.7.30"
+    networks:
+      - bank-network
+    container_name: bank-deposit-mysql
+    volumes:
+      - bank-deposit:/var/lib/mysql
+    ports:
+      - "3308:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    command: --disable-partition-engine-check
+  web-service:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - bank-network
+    depends_on:
+      - mysql-service
+
+networks:
+  bank-network:
+    driver: bridge
