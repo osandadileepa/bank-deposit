@@ -41,7 +41,7 @@ public class FixedDeposit extends Account {
 	@Column(nullable = false)
 	private Double rate;
 
-	@OneToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+	@OneToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
 	private DepositAccountType depositAccountType;
 
 	@ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)

@@ -15,21 +15,20 @@ import com.osanda.bankDeposit.service.AccountService;
 
 import lombok.RequiredArgsConstructor;
 
-@RestController()
+@RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "${spring.data.rest.base-path}/account/")
 public class AccountController {
 
 	private final AccountService accountService;
 
-	
 	/***
 	 * get account related details from NIC number
 	 * 
 	 * @author Osanda Wedamulla
 	 * 
 	 * @param nic
-	 * @return  ResponseEntity<?>
+	 * @return ResponseEntity<?>
 	 */
 	@GetMapping(value = "get-data")
 	public ResponseEntity<?> getAccountsAndDetail(@RequestParam(value = "nic") String nic) {
@@ -40,15 +39,12 @@ public class AccountController {
 			return ResponseEntity.ok(accountDetails);
 
 		} catch (NICInvalideException e) {
-
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
 					.body(new ErrorResponseDto("Please enter valid NIC number."));
 		} catch (NICNotFoundException e) {
-
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
 					.body(new ErrorResponseDto("Bank does not have any account related to this NIC number"));
 		} catch (Exception e) {
-
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
 					.body(new ErrorResponseDto("Error getting requested data."));
 		}

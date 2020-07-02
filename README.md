@@ -1,6 +1,6 @@
 # Getting Started
 
-Test project to add Bank account and account holder information.
+Test project to get all account and deposit detaild from Account Holder's NIC and display the summary with interest.
 
 # Build and Deployement instruction
 
@@ -59,3 +59,8 @@ docker-compose up --build
 ```
 
 - After few munutes application with the api is available at http://localhost:8080/api
+
+
+## Account Deposit api information
+
+ - RestController relevant to get Deposite and account informations are available in the AccountController and business logic in AccountService

@@ -8,12 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.osanda.bankDeposit.dto.AccountDetailsDto;
 
-/***
- * all the account holder related details processing service
- * 
- * @author Osanda Wedamulla
- */
-
 import com.osanda.bankDeposit.dto.AccountHolderResultDto;
 import com.osanda.bankDeposit.enums.Gender;
 import com.osanda.bankDeposit.enums.InterestPaymentMethod;
@@ -26,6 +20,12 @@ import com.osanda.bankDeposit.repository.AccountHolderRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
+/***
+ * all the account holder related details processing service
+ * 
+ * @author Osanda Wedamulla
+ */
 
 @Slf4j
 @Service
@@ -163,6 +163,11 @@ public class AccountService {
 			}
 			account.setInterestPaymentMethod(interestPaymentMethod);
 
+			// for interest calculation assume that when creating the deposit account with
+			// relevant type, based on that, deposit amount and Interest Payment method
+			// correct interest is calculated and persist into the deposit account rate as
+			// the final interest Rate
+
 			Double interestAmount = null;
 
 			switch (accountType.getInterestPayement()) {
@@ -179,6 +184,9 @@ public class AccountService {
 				log.error("Interest payemet method is not defined !!");
 				break;
 			}
+
+			log.info("Interest calculated for Account Number {} with Deposit Account type {} ",
+					account.getAccountNumber(), account.getAccountType());
 
 			account.setInterestAmount(interestAmount);
 

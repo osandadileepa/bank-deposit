@@ -46,4 +46,4 @@ public class DepositAccountType extends BaseModel {
 	@Enumerated(EnumType.STRING)
 	private InterestPaymentMethod interestPayement;
 
-}
+}// DepositAccountType {}
