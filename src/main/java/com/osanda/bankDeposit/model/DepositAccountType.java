@@ -1,23 +1,20 @@
 package com.osanda.bankDeposit.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+import com.osanda.bankDeposit.enums.InterestPaymentMethod;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 
 /***
  * 
@@ -31,6 +28,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "name", "interestPayement" }))
 public class DepositAccountType extends BaseModel {
 
 	private static final long serialVersionUID = 3031101303651816282L;
@@ -43,15 +41,9 @@ public class DepositAccountType extends BaseModel {
 	private String name;
 
 	@Column(nullable = true)
-	private Double rate;
-
-	@Column(nullable = true)
 	private Double minimumDeposit;
 
-	@ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
-	@JoinTable(name = "deposit_account_type_interest_payment", joinColumns = {
-			@JoinColumn(name = "deposit_account_type_id", referencedColumnName = "id", nullable = true) }, inverseJoinColumns = {
-					@JoinColumn(name = "interest_payment_id", referencedColumnName = "id", nullable = true) })
-	private List<InterestPayment> interestPayments = new ArrayList<>();
+	@Enumerated(EnumType.STRING)
+	private InterestPaymentMethod interestPayement;
 
 }

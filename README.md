@@ -26,6 +26,7 @@ Make sure following are met
 - Backend available at src/main/java
 - MySQL instance will be available by using docker-compose file at src/main/docker(command : docker-compose up)
 - Backend will be available by using following command at the project root.
+
 ```bash
 ./mvnw spring-boot:run -Dspring-boot.run.profiles=dev
 ```
@@ -43,7 +44,7 @@ In the project root directory execute the following bach script
 - MySQL instance should available at locally, port 3306 with root username and root password in order to jar file to work.
 
 ```bash
-java -jar -Dspring.profiles.active=dev target/student-grade-0.0.1-SNAPSHOT.jar
+java -jar -Dspring.profiles.active=dev target/bank-deposit-0.0.1-SNAPSHOT.jar
 ```
 
 After executing above command application api is presented at http://localhost:8080/api

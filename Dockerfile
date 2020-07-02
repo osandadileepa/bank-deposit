@@ -1,7 +1,6 @@
 FROM openjdk:8-jdk-alpine as builder
 RUN mkdir -p /app/source
 COPY . /app/source
-COPY --from=node /app/source /app/source/
 WORKDIR /app/source
 RUN ./mvnw clean install -DskipTests
 

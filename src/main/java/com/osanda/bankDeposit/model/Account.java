@@ -1,14 +1,11 @@
 package com.osanda.bankDeposit.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.ManyToOne;
 
 import com.osanda.bankDeposit.enums.AccountType;
 
@@ -38,8 +35,4 @@ public class Account extends BaseModel {
 
 	@Enumerated(EnumType.STRING)
 	private AccountType accountType;
-
-	@ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
-	private AccountHolder accountHolder;
-
 }

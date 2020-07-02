@@ -1,7 +1,7 @@
 package com.osanda.bankDeposit.model;
 
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -58,6 +58,6 @@ public class AccountHolder extends BaseModel {
 
 	private LocalDate dateOfBirth;
 
-	@OneToMany(mappedBy = "accountHolder", fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
-	private Set<Account> accounts;
+	@OneToMany(mappedBy = "accountHolder", fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+	private List<FixedDeposit> fixedDeposits;
 }

@@ -8,4 +8,6 @@ import com.osanda.bankDeposit.model.AccountHolder;
 @RepositoryRestResource(exported = true)
 public interface AccountHolderRepository extends JpaRepository<AccountHolder, Long> {
 
+	AccountHolder findByNicNumber(String nicNumber);
+
 }
